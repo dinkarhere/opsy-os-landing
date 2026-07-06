@@ -4,134 +4,157 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Opsy OS — The Freelance OS</title>
-  <meta name="description" content="The Freelance OS. Made for freelancers, by a freelancer. Free for a year." />
+  <meta name="description" content="A quiet operating system for freelance work. Clients, projects, invoices, notes, and a client portal — in one place. Free for the first year." />
   <meta property="og:title" content="Opsy OS — The Freelance OS" />
-  <meta property="og:description" content="Made for freelancers, by a freelancer. Free for a year." />
+  <meta property="og:description" content="Made for freelancers, by a freelancer. Free for the first year." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://opsyos.com" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%97%89%3C/text%3E%3C/svg%3E" />
+  <meta property="og:url" content="https://opsy-os-landing.vercel.app" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0d0d'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='ui-sans-serif,system-ui' font-size='16' font-weight='600' fill='%23ededed'%3EO%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
   <style>
     :root {
-      --bg: #0b0b0f;
-      --fg: #f5f5f5;
-      --muted: #9aa0a6;
-      --accent: #ffffff;
-      --border: rgba(255,255,255,0.14);
+      --bg: #0d0d0d;
+      --fg: #ededed;
+      --muted: #7a7a76;
+      --rule: #1e1e1e;
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { margin: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+
     body {
-      margin: 0;
       background: var(--bg);
       color: var(--fg);
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-feature-settings: "cv11", "ss01";
+      font-feature-settings: "cv11", "ss01", "tnum";
       font-optical-sizing: auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
-      display: grid;
-      place-items: center;
-      padding: 24px;
+      line-height: 1.6;
+      min-height: 100dvh;
     }
-    main {
+
+    .page {
+      min-height: 100dvh;
       max-width: 620px;
-      width: 100%;
-      text-align: center;
+      margin: 0 auto;
+      padding: clamp(48px, 12vh, 120px) 28px 32px;
+      display: flex;
+      flex-direction: column;
     }
-    .mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 13px;
       color: var(--muted);
-      margin-bottom: 32px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 56px;
+      letter-spacing: 0.01em;
     }
-    .mark::before {
-      content: "";
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(255,255,255,0.6);
-    }
-    h1 {
-      font-size: clamp(40px, 7vw, 64px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin: 0 0 20px;
-      font-weight: 600;
-    }
-    p.lede {
-      font-size: clamp(17px, 2vw, 19px);
-      line-height: 1.55;
-      color: var(--muted);
-      margin: 0 auto 32px;
-      max-width: 520px;
-    }
-    .badge {
-      display: inline-block;
-      font-size: 12px;
-      letter-spacing: 0.06em;
+    header .brand {
       color: var(--fg);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: 999px;
-      margin-bottom: 24px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
     }
+    header .meta {
+      font-variant-numeric: tabular-nums;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 52px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin: 0 0 28px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.65;
+      margin: 0 0 20px;
+      max-width: 44ch;
+    }
+    p.muted { color: var(--muted); }
+
     .cta {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--fg);
-      color: var(--bg);
-      padding: 14px 22px;
-      border-radius: 999px;
+      color: var(--fg);
       text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      transition: transform .15s ease, background .15s ease;
+      border-bottom: 1px solid var(--fg);
+      padding: 0 0 3px;
+      margin-top: 16px;
+      font-size: 17px;
+      transition: gap 160ms ease, opacity 160ms ease;
     }
-    .cta:hover { transform: translateY(-1px); background: #ffffff; }
-    .cta svg { transition: transform .15s ease; }
-    .cta:hover svg { transform: translateX(2px); }
+    .cta:hover { gap: 14px; opacity: 0.85; }
+    .cta svg { display: block; }
+
     footer {
-      position: fixed;
-      bottom: 20px;
-      left: 0; right: 0;
-      text-align: center;
-      font-size: 13px;
+      margin-top: auto;
+      padding-top: 64px;
+      font-size: 12.5px;
       color: var(--muted);
+      letter-spacing: 0.01em;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
     }
-    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+    }
     footer a:hover { color: var(--fg); }
+
+    ::selection { background: #ededed; color: #0d0d0d; }
+
+    @media (max-width: 480px) {
+      .page { padding: 56px 22px 28px; }
+      header { margin-bottom: 40px; }
+      footer { padding-top: 48px; flex-direction: column; gap: 6px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <div class="mark">Opsy&nbsp;OS</div>
-    <h1>The Freelance OS.</h1>
-    <p class="lede">
-      Made for freelancers, by a freelancer.
-    </p>
-    <div class="badge">Free for a year</div>
-    <div>
-    <a class="cta" href="https://app.opsyos.com" target="_blank" rel="noopener">
-      Open the app
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
-      </svg>
-    </a>
-    </div>
-  </main>
-  <footer>
-    &copy; <span id="y"></span> Opsy OS
-  </footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <div class="page">
+    <header>
+      <span class="brand">Opsy&nbsp;OS</span>
+      <span class="meta">v0.1</span>
+    </header>
+
+    <main>
+      <h1>The Freelance OS.</h1>
+
+      <p>
+        I built Opsy&nbsp;OS because I got tired of running my freelance work across Notion, Excel, a PDF template, and WhatsApp reminders. It's one place for clients, projects, invoices in&nbsp;₹, notes, and a client portal that only needs a UPI&nbsp;ID.
+      </p>
+
+      <p class="muted">
+        Made for freelancers, by a freelancer. Free for the first year while I keep shipping.
+      </p>
+
+      <a class="cta" href="https://app.opsyos.com" target="_blank" rel="noopener">
+        Open the app
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </main>
+
+    <footer>
+      <span>Made in Jalna, India</span>
+      <span>— Dinkar</span>
+    </footer>
+  </div>
 </body>
 </html>
