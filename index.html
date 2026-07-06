@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Opsy OS — The Freelance OS</title>
+  <meta name="description" content="Opsy OS is the Freelance OS: clients, notes, and everything you run your practice on — in one place." />
+  <meta property="og:title" content="Opsy OS — The Freelance OS" />
+  <meta property="og:description" content="Clients, notes, and everything you run your practice on — in one place." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://opsyos.com" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%97%89%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --fg: #f5f5f5;
+      --muted: #9aa0a6;
+      --accent: #ffffff;
+      --border: rgba(255,255,255,0.14);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    main {
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+    }
+    .mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .mark::before {
+      content: "";
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255,255,255,0.6);
+    }
+    h1 {
+      font-size: clamp(40px, 7vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      font-weight: 600;
+    }
+    p.lede {
+      font-size: clamp(17px, 2vw, 19px);
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0 auto 40px;
+      max-width: 520px;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--fg);
+      color: var(--bg);
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .cta:hover { transform: translateY(-1px); background: #ffffff; }
+    .cta svg { transition: transform .15s ease; }
+    .cta:hover svg { transform: translateX(2px); }
+    footer {
+      position: fixed;
+      bottom: 20px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+    footer a:hover { color: var(--fg); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark">Opsy&nbsp;OS</div>
+    <h1>The Freelance OS.</h1>
+    <p class="lede">
+      Clients, notes, and everything you run your practice on — organized in one calm place, built for people who work for themselves.
+    </p>
+    <a class="cta" href="https://app.opsyos.com" target="_blank" rel="noopener">
+      Open the app
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </main>
+  <footer>
+    &copy; <span id="y"></span> Opsy OS
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
