@@ -544,7 +544,7 @@ button { font-family: inherit; }
 .shot-frame img {
   width: 100%;
   display: block;
-  aspect-ratio: 2000 / 1135;
+  aspect-ratio: 2880 / 1634;
   object-fit: cover;
 }
 

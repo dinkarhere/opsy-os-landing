@@ -90,7 +90,7 @@ export function Maker() {
           transition={{ duration: 0.6 }}
         >
           <div className="avatar">
-            <img src="/shots/dinkar.png" alt="Dinkar Sable" />
+            <img src="/shots/dinkar.jpg" alt="Dinkar Sable" />
           </div>
           <div>
             <h3>Built by Dinkar Sable.</h3>

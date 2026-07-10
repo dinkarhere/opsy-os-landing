@@ -237,51 +237,63 @@ function DashboardMock() {
 }
 
 /* ---------- 03b · Real dashboard screenshots (light/dark) ---------- */
+const SHOT = { light: '/shots/dashboard-light.png', dark: '/shots/dashboard-dark.png' }
+
 function DashboardShowcase() {
-  const [dark, setDark] = useState(false)
-  const [imgOk, setImgOk] = useState(true)
+  const [avail, setAvail] = useState({ light: null, dark: null })
+  const [dark, setDark] = useState(true)
 
   useEffect(() => {
-    const pre = new Image()
-    pre.src = '/shots/dashboard-dark.png'
+    Object.entries(SHOT).forEach(([mode, url]) => {
+      const img = new Image()
+      img.onload = () => setAvail((a) => ({ ...a, [mode]: true }))
+      img.onerror = () => setAvail((a) => ({ ...a, [mode]: false }))
+      img.src = url
+    })
   }, [])
 
+  const both = avail.light && avail.dark
+
   useEffect(() => {
-    if (!imgOk) return
+    if (!both) return
     const t = setInterval(() => setDark((d) => !d), 5000)
     return () => clearInterval(t)
-  }, [imgOk])
+  }, [both])
 
-  if (!imgOk) return <DashboardMock />
+  if (avail.light === false && avail.dark === false) return <DashboardMock />
+  if (avail.light === null && avail.dark === null) return <DashboardMock />
 
-  const src = dark ? '/shots/dashboard-dark.png' : '/shots/dashboard-light.png'
+  const mode = both ? (dark ? 'dark' : 'light') : (avail.dark ? 'dark' : 'light')
+  const src = SHOT[mode]
   return (
     <motion.div className="mock-card" whileHover={{ y: -3, boxShadow: 'var(--shadow-lg)' }} transition={{ duration: 0.25 }}>
       <div className="mock-titlebar">
         <span className="traffic"><i /><i /><i /></span>
         <span className="mock-title">opsyos.com — Dashboard</span>
-        <button
-          className="theme-toggle"
-          onClick={() => setDark((d) => !d)}
-          aria-label="Toggle light/dark screenshot"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={dark ? 'moon' : 'sun'}
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              style={{ display: 'inline-flex' }}
-            >
-              {dark ? (
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
-              ) : (
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
-              )}
-            </motion.span>
-          </AnimatePresence>
-        </button>
+        {both && (
+          <button
+            className="theme-toggle"
+            onClick={() => setDark((d) => !d)}
+            aria-label="Toggle light/dark screenshot"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={dark ? 'moon' : 'sun'}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ display: 'inline-flex' }}
+              >
+                {dark ? (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+                ) : (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
+                )}
+              </motion.span>
+            </AnimatePresence>
+          </button>
+        )}
       </div>
       <div className="shot-frame">
         <AnimatePresence mode="popLayout" initial={false}>
@@ -293,7 +305,6 @@ function DashboardShowcase() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            onError={() => setImgOk(false)}
           />
         </AnimatePresence>
       </div>
