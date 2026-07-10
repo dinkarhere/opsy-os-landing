@@ -9,23 +9,23 @@
   <meta property="og:description" content="Made for freelancers, by a freelancer. Free for the first year." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.opsyos.com" />
-  <meta name="theme-color" content="#0a0a0a" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0a'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='ui-sans-serif,system-ui' font-size='16' font-weight='600' fill='%23f0f0ef'%3EO%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#fafaf7" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111111'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='ui-sans-serif,system-ui' font-size='16' font-weight='600' fill='%23fafaf7'%3EO%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --surface-2: #161616;
-      --fg: #f0f0ef;
-      --muted: #7d7d78;
-      --muted-2: #4d4d49;
-      --rule: #1c1c1c;
-      --rule-strong: #2a2a2a;
-      --accent: #4080ff;
-      --accent-soft: rgba(64, 128, 255, 0.14);
+      --bg: #fafaf7;
+      --surface: #ffffff;
+      --surface-2: #f2f2ee;
+      --fg: #111111;
+      --muted: #6a6a66;
+      --muted-2: #a5a5a1;
+      --rule: #ececea;
+      --rule-strong: #d9d9d4;
+      --accent: #2b5cff;
+      --accent-soft: rgba(43, 92, 255, 0.10);
       --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
       --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
@@ -66,12 +66,12 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(10, 10, 10, 0);
+      background: rgba(250, 250, 247, 0);
       transition: background 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(10, 10, 10, 0.72);
+      background: rgba(250, 250, 247, 0.78);
       backdrop-filter: saturate(140%) blur(12px);
       -webkit-backdrop-filter: saturate(140%) blur(12px);
       border-bottom-color: var(--rule);
@@ -122,7 +122,7 @@
       border-radius: 8px;
       transition: transform 140ms ease, box-shadow 140ms ease;
     }
-    nav .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(240,240,239,0.15); }
+    nav .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(17,17,17,0.14); }
     nav .btn svg { transition: transform 140ms ease; }
     nav .btn:hover svg { transform: translateX(2px); }
 
@@ -192,7 +192,7 @@
       border-radius: 10px;
       transition: transform 140ms ease, box-shadow 140ms ease;
     }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(240,240,239,0.18); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(17,17,17,0.16); }
     .btn-primary svg { transition: transform 140ms ease; }
     .btn-primary:hover svg { transform: translateX(3px); }
     .btn-secondary {
@@ -226,7 +226,7 @@
       position: absolute;
       inset: -80px -40px auto -40px;
       height: 320px;
-      background: radial-gradient(60% 100% at 50% 0%, rgba(64,128,255,0.10), transparent 70%);
+      background: radial-gradient(60% 100% at 50% 0%, rgba(43,92,255,0.09), transparent 70%);
       z-index: -1;
       pointer-events: none;
     }
@@ -428,7 +428,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(50% 80% at 50% 100%, rgba(64,128,255,0.08), transparent 70%);
+      background: radial-gradient(50% 80% at 50% 100%, rgba(43,92,255,0.08), transparent 70%);
       pointer-events: none;
     }
     .cta-band h2 {
