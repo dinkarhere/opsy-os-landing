@@ -9,29 +9,57 @@
   <meta property="og:description" content="Made for freelancers, by a freelancer. Free for the first year." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.opsyos.com" />
-  <meta name="theme-color" content="#f2f1ec" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0a'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='ui-sans-serif,system-ui' font-size='16' font-weight='700' fill='%23ffffff'%3EO%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111111'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='ui-sans-serif,system-ui' font-size='16' font-weight='600' fill='%23ffffff'%3EO%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <style>
+    /* ===================================================
+       Design tokens — from DESIGN.md (Cal.com-inspired)
+       =================================================== */
     :root {
-      --page: #f2f1ec;
-      --card: #ffffff;
-      --card-2: #f7f6f2;
-      --fg: #0a0a0a;
-      --fg-soft: #1c1c1c;
-      --muted: #5c5c58;
-      --muted-2: #98988f;
-      --rule: #ececea;
-      --rule-strong: #dadad4;
-      --accent: #2b5cff;
-      --accent-soft: rgba(43, 92, 255, 0.10);
-      --green: #22c55e;
-      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      /* colors */
+      --canvas: #ffffff;
+      --surface-soft: #f8f9fa;
+      --surface-card: #f5f5f5;
+      --surface-strong: #e5e7eb;
+      --surface-dark: #101010;
+      --surface-dark-elevated: #1a1a1a;
+      --ink: #111111;
+      --body-text: #374151;
+      --muted: #6b7280;
+      --muted-soft: #898989;
+      --hairline: #e5e7eb;
+      --hairline-soft: #f3f4f6;
+      --on-primary: #ffffff;
+      --on-dark: #ffffff;
+      --on-dark-soft: #a1a1aa;
+      --brand-accent: #3b82f6;
+      --success: #10b981;
+      --badge-orange: #fb923c;
+      --badge-emerald: #34d399;
+
+      /* radius */
+      --r-sm: 6px;
+      --r-md: 8px;
+      --r-lg: 12px;
+      --r-xl: 16px;
+      --r-pill: 9999px;
+
+      /* spacing */
+      --sp-xxs: 4px;
+      --sp-xs: 8px;
+      --sp-sm: 12px;
+      --sp-md: 16px;
+      --sp-lg: 24px;
+      --sp-xl: 32px;
+      --sp-xxl: 48px;
+      --sp-section: 96px;
+
+      /* type */
       --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --radius-card: 28px;
-      --radius-btn: 12px;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
     * { box-sizing: border-box; }
@@ -39,425 +67,307 @@
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
     body {
-      background: var(--page);
-      color: var(--fg);
+      background: var(--canvas);
+      color: var(--body-text);
       font-family: var(--sans);
-      font-feature-settings: "cv11", "ss01", "tnum";
+      font-size: 16px;
+      line-height: 1.5;
+      font-feature-settings: "cv11", "ss01";
       font-optical-sizing: auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
-      line-height: 1.5;
       overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
-    ::selection { background: var(--fg); color: var(--card); }
+    ::selection { background: var(--ink); color: var(--on-primary); }
 
-    .wrap { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-    /* ============ NAV (on gray page bg) ============ */
+    /* ===================================================
+       Typography scale (DESIGN.md exact)
+       Cal Sans substitute: Inter 600 with negative tracking
+       =================================================== */
+    .display-xl {
+      font-size: clamp(40px, 6.4vw, 64px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .display-lg {
+      font-size: clamp(32px, 4.4vw, 48px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .display-md {
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.028em;
+      color: var(--ink);
+    }
+    .display-sm {
+      font-size: clamp(22px, 2.4vw, 28px);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.018em;
+      color: var(--ink);
+    }
+    .title-lg { font-size: 22px; font-weight: 600; line-height: 1.3; letter-spacing: -0.014em; color: var(--ink); }
+    .title-md { font-size: 18px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+    .title-sm { font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+    .body-md { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--body-text); }
+    .body-sm { font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--body-text); }
+    .caption {
+      font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--mono);
+    }
+    .code { font-family: var(--mono); font-size: 14px; font-weight: 400; line-height: 1.5; }
+
+    /* Reset default h1/h2 to inherit our display scale */
+    h1, h2, h3 { margin: 0; font-weight: 600; color: var(--ink); }
+
+    /* ===================================================
+       Nav (top-nav — 64px, canvas bg)
+       =================================================== */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(242, 241, 236, 0);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0);
       transition: background 220ms ease, backdrop-filter 220ms ease, border-color 220ms ease;
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(242, 241, 236, 0.78);
+      background: rgba(255,255,255,0.85);
       backdrop-filter: saturate(140%) blur(14px);
       -webkit-backdrop-filter: saturate(140%) blur(14px);
-      border-bottom-color: var(--rule);
+      border-bottom-color: var(--hairline);
     }
     nav .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 76px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
     }
     nav .brand {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--fg);
+      font-size: 18px; font-weight: 600; letter-spacing: -0.012em; color: var(--ink);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    nav .brand .dot {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: var(--ink); color: var(--on-primary);
+      display: inline-grid; place-items: center;
+      font-size: 12px; font-weight: 700;
     }
     nav .links {
-      display: flex;
-      align-items: center;
-      gap: 40px;
+      display: flex; align-items: center; gap: 32px;
     }
     nav .links a {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      font-size: 14px; font-weight: 500; color: var(--body-text);
+      display: inline-flex; align-items: center; gap: 4px;
       transition: color 140ms ease;
     }
-    nav .links a:hover { color: var(--fg); }
-    nav .links a svg { opacity: 0.6; }
-    nav .btn-nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--fg);
-      color: var(--card);
-      font-size: 15px;
-      font-weight: 500;
-      padding: 12px 22px;
-      border-radius: 999px;
-      transition: transform 140ms ease, box-shadow 140ms ease;
+    nav .links a:hover { color: var(--ink); }
+    nav .links a svg { opacity: 0.55; }
+
+    /* button-primary — 40px height, 8px radius, 14px/600, 12x20 padding */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--ink); color: var(--on-primary);
+      font-size: 14px; font-weight: 600; line-height: 1;
+      padding: 12px 20px; height: 40px;
+      border-radius: var(--r-md); border: 0; cursor: pointer;
+      transition: background 140ms ease, transform 140ms ease, box-shadow 140ms ease;
     }
-    nav .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,10,10,0.18); }
-    nav .btn-nav svg { transition: transform 140ms ease; }
-    nav .btn-nav:hover svg { transform: translateX(2px); }
+    .btn-primary:hover { background: #242424; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(17,17,17,0.16); }
+    .btn-primary svg { transition: transform 140ms ease; }
+    .btn-primary:hover svg.arrow { transform: translateX(2px); }
+
+    /* button-secondary */
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--canvas); color: var(--ink);
+      font-size: 14px; font-weight: 600; line-height: 1;
+      padding: 12px 20px; height: 40px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--hairline);
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+    .btn-secondary:hover { background: var(--surface-soft); border-color: var(--surface-strong); }
+
+    /* button-primary (block, full width variant for CTAs stacked) */
+    .btn-block { width: 100%; }
 
     @media (max-width: 900px) {
       nav .links { display: none; }
     }
 
-    /* ============ CARD (shared white rounded surface) ============ */
-    .card-outer {
-      max-width: 1360px;
-      margin: 0 auto 24px;
-      padding: 0 24px;
+    /* ===================================================
+       Sections — 96px vertical rhythm
+       =================================================== */
+    section {
+      padding: var(--sp-section) 0;
     }
-    .card {
-      background: var(--card);
-      border-radius: var(--radius-card);
-      padding: clamp(40px, 6vw, 80px);
-      position: relative;
-      overflow: hidden;
-    }
+    section.tight { padding: var(--sp-xxl) 0; }
+    section.gray { background: var(--surface-card); }
+    section.soft { background: var(--surface-soft); }
 
-    /* ============ HERO ============ */
-    .hero-card {
+    /* section eyebrow (uses caption style) */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: var(--sp-xs);
+      font-family: var(--mono); font-size: 13px; font-weight: 500;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: var(--sp-lg);
+    }
+    .eyebrow .num { color: var(--muted-soft); }
+
+    /* ===================================================
+       Hero band — 7/5 grid, white canvas, display-xl h1
+       =================================================== */
+    .hero {
       display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: clamp(32px, 5vw, 72px);
+      grid-template-columns: 7fr 5fr;
+      gap: var(--sp-xxl);
       align-items: center;
-      min-height: 620px;
     }
     @media (max-width: 900px) {
-      .hero-card {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        min-height: 0;
-      }
+      .hero { grid-template-columns: 1fr; gap: var(--sp-xxl); }
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--card-2);
-      border: 1px solid var(--rule);
-      color: var(--fg);
-      font-size: 14px;
-      font-weight: 500;
-      padding: 7px 14px;
-      border-radius: 999px;
-      transition: transform 140ms ease, border-color 140ms ease;
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface-card);
+      color: var(--ink);
+      font-size: 13px; font-weight: 500; line-height: 1.4;
+      padding: 6px 12px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--hairline-soft);
+      transition: background 140ms ease;
     }
-    .pill:hover { transform: translateY(-1px); border-color: var(--rule-strong); }
-    .pill svg { opacity: 0.6; transition: transform 140ms ease; }
-    .pill:hover svg { transform: translateX(2px); }
+    .badge-pill:hover { background: #ececec; }
+    .badge-pill svg { opacity: 0.55; transition: transform 140ms ease; }
+    .badge-pill:hover svg { transform: translateX(2px); }
 
-    h1 {
-      font-size: clamp(44px, 6.6vw, 88px);
-      font-weight: 700;
-      line-height: 1.02;
-      letter-spacing: -0.035em;
-      color: var(--fg);
-      margin: 28px 0 24px;
-      max-width: 11ch;
-    }
-
-    .hero-sub {
-      font-size: 18px;
-      line-height: 1.5;
-      color: var(--muted);
-      max-width: 44ch;
-      margin: 0 0 40px;
-    }
+    .hero h1 { margin: var(--sp-lg) 0 var(--sp-md); max-width: 12ch; }
+    .hero .sub { max-width: 44ch; margin: 0 0 var(--sp-xl); color: var(--body-text); font-size: 18px; line-height: 1.55; }
 
     .btn-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 480px;
-      margin-bottom: 20px;
+      display: flex; flex-direction: column; gap: var(--sp-sm);
+      max-width: 420px;
     }
-    .btn-full {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 16px 22px;
-      border-radius: var(--radius-btn);
-      font-size: 15.5px;
-      font-weight: 500;
-      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
-    }
-    .btn-full.primary {
-      background: var(--fg);
-      color: var(--card);
-    }
-    .btn-full.primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 30px rgba(10,10,10,0.20);
-    }
-    .btn-full.secondary {
-      background: var(--card-2);
-      color: var(--fg);
-      border: 1px solid var(--rule);
-    }
-    .btn-full.secondary:hover {
-      background: #eeece6;
-    }
-    .btn-full svg.arrow { transition: transform 140ms ease; }
-    .btn-full:hover svg.arrow { transform: translateX(3px); }
+    .btn-stack .btn-primary,
+    .btn-stack .btn-secondary { width: 100%; height: 44px; padding: 12px 20px; }
 
     .fineprint {
-      font-size: 13.5px;
-      color: var(--muted);
-      max-width: 480px;
+      font-size: 13px; color: var(--muted); margin-top: var(--sp-md); max-width: 420px;
     }
 
-    /* ============ TRUST ROW (below hero, inside card) ============ */
-    .trust {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      margin-top: 44px;
-      padding-top: 32px;
-      border-top: 1px solid var(--rule);
-      flex-wrap: wrap;
-    }
-    .trust-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .trust-item .icon {
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      background: var(--card-2);
-      border: 1px solid var(--rule);
-      display: grid;
-      place-items: center;
-      color: var(--fg);
-      font-size: 14px;
-    }
-    .trust-item strong {
-      color: var(--fg);
-      font-weight: 500;
-    }
-
-    /* ============ HERO WIDGET MOCK ============ */
-    .widget {
+    /* Hero mockup card — rounded xl, white, hairline border, soft shadow */
+    .hero-mockup {
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-xl);
+      padding: var(--sp-lg);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       display: grid;
       grid-template-columns: 1.05fr 1fr;
-      gap: 16px;
-      align-items: stretch;
-      position: relative;
+      gap: var(--sp-md);
     }
-    .widget::before {
-      content: "";
-      position: absolute;
-      inset: -40px -20px;
-      background: radial-gradient(60% 80% at 60% 20%, rgba(43,92,255,0.07), transparent 65%);
-      pointer-events: none;
-      z-index: -1;
+    @media (max-width: 520px) {
+      .hero-mockup { grid-template-columns: 1fr; }
     }
-    .w-card {
-      background: var(--card);
-      border: 1px solid var(--rule-strong);
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 20px 40px -20px rgba(10,10,10,0.10);
+
+    /* Widget sub-card panels */
+    .w-panel {
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-lg);
+      padding: var(--sp-md);
     }
-    .w-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
+    .w-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
     }
     .w-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6d8cff, #2b5cff);
+      width: 36px; height: 36px; border-radius: var(--r-pill);
+      background: linear-gradient(135deg, #6d8cff, #3b82f6);
       color: white;
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      font-weight: 600;
+      display: grid; place-items: center;
+      font-size: 13px; font-weight: 600;
     }
-    .w-client-name {
-      font-size: 13.5px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .w-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--fg);
-      line-height: 1.3;
-    }
-    .w-desc {
-      font-size: 13.5px;
-      line-height: 1.55;
-      color: var(--muted);
-      margin: 8px 0 18px;
-    }
-    .w-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 10px 0;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .w-row .lbl-icon {
-      width: 18px; display: grid; place-items: center; color: var(--muted-2);
-    }
+    .w-name { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .w-title-line { font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+    .w-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 6px 0 12px; }
+    .w-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; color: var(--muted); }
+    .w-row svg { opacity: 0.55; }
+
     .w-amounts {
-      display: flex;
-      gap: 6px;
-      background: var(--card-2);
-      border-radius: 8px;
-      padding: 4px;
+      display: flex; gap: 4px;
+      background: var(--surface-card);
+      border-radius: var(--r-md);
+      padding: 3px;
+      flex: 1;
     }
     .w-amount {
-      flex: 1;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 13px;
-      padding: 8px 6px;
-      border-radius: 6px;
-      color: var(--muted);
+      flex: 1; text-align: center;
+      font-family: var(--mono); font-size: 12.5px;
+      padding: 6px 4px; border-radius: var(--r-sm);
+      color: var(--muted); cursor: pointer;
       transition: background 140ms ease, color 140ms ease;
-      cursor: pointer;
     }
-    .w-amount.active {
-      background: var(--card);
-      color: var(--fg);
-      border: 1px solid var(--rule-strong);
-    }
+    .w-amount.active { background: var(--canvas); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+
     .w-inv-chip {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 3px 8px;
-      border-radius: 6px;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--brand-accent); background: rgba(59,130,246,0.10);
+      padding: 3px 8px; border-radius: var(--r-sm);
       display: inline-block;
-      letter-spacing: 0.02em;
     }
 
     /* Mini calendar */
-    .w-cal-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: flex-start;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .w-cal-month {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .w-cal-year {
-      font-size: 16px;
-      color: var(--muted);
-    }
+    .w-cal-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+    .w-cal-month { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .w-cal-year { font-size: 14px; color: var(--muted); }
     .w-cal {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      font-size: 12px;
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
     }
     .w-cal .dow {
-      font-size: 10px;
-      color: var(--muted-2);
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 6px 0;
-      font-weight: 500;
+      font-family: var(--mono); font-size: 9.5px; font-weight: 500;
+      color: var(--muted-soft); text-align: center;
+      padding: 4px 0; text-transform: uppercase; letter-spacing: 0.06em;
     }
     .w-cal .day {
       aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border-radius: 6px;
-      color: var(--fg);
-      background: var(--card-2);
-      font-family: var(--mono);
-      font-size: 12px;
-      position: relative;
-      transition: background 140ms ease, color 140ms ease;
+      display: grid; place-items: center;
+      border-radius: var(--r-sm);
+      background: var(--surface-card);
+      font-family: var(--mono); font-size: 11px;
+      color: var(--ink); position: relative;
       cursor: pointer;
     }
     .w-cal .day.blank { background: transparent; cursor: default; }
-    .w-cal .day.muted { color: var(--muted-2); }
+    .w-cal .day.muted { color: var(--muted-soft); }
     .w-cal .day.paid::after {
-      content: "";
-      position: absolute;
-      bottom: 4px;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--green);
+      content: ""; position: absolute; bottom: 3px;
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--success);
     }
-    .w-cal .day.active {
-      background: var(--fg);
-      color: var(--card);
+    .w-cal .day.active { background: var(--ink); color: var(--on-primary); }
+    .w-legend {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid var(--hairline);
+      display: flex; gap: 12px; font-size: 11px; color: var(--muted);
     }
-    .w-cal .day:not(.blank):not(.active):hover {
-      background: #ececea;
-    }
+    .w-legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
 
-    /* ============ SECTIONS BELOW HERO ============ */
-    .section-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-    .section-eyebrow .num { color: var(--muted-2); }
-
-    h2 {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.028em;
-      margin: 0 0 20px;
-      max-width: 18ch;
-    }
-
-    .lede {
-      font-size: 17px;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 44ch;
-      margin: 0 0 24px;
-    }
-
+    /* ===================================================
+       Feature split sections — display-lg h2, body-md sub
+       =================================================== */
     .split {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
-      gap: clamp(32px, 5vw, 72px);
+      gap: var(--sp-xxl);
       align-items: center;
     }
     .split.reverse .copy { order: 2; }
@@ -467,233 +377,177 @@
       .split.reverse .copy { order: 1; }
       .split.reverse .visual { order: 2; }
     }
+    .copy h2 { margin-bottom: var(--sp-md); max-width: 18ch; }
+    .copy .lede { margin: 0 0 var(--sp-lg); max-width: 46ch; color: var(--body-text); font-size: 16px; line-height: 1.6; }
 
-    /* Placeholder */
-    .ph {
-      position: relative;
-      width: 100%;
-      background: var(--card-2);
-      border: 1px solid var(--rule-strong);
-      border-radius: 18px;
-      overflow: hidden;
-    }
-    .ph::before {
-      content: "";
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(90deg, transparent 0 calc(50% - 0.5px), var(--rule) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px) 100%),
-        linear-gradient(0deg, transparent 0 calc(50% - 0.5px), var(--rule) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px) 100%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    .ph-body {
-      position: relative;
-      display: grid;
-      place-items: center;
-      gap: 8px;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .ph-dim {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
-    .ph-desc {
-      font-size: 13.5px;
-      color: var(--muted);
-      max-width: 42ch;
-      line-height: 1.5;
-    }
-    .ph-tag {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--muted-2);
-      border: 1px solid var(--rule-strong);
-      border-radius: 6px;
-      padding: 3px 8px;
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .chips {
-      display: inline-flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
+    /* chips (feature markers) */
+    .chips { display: inline-flex; gap: 8px; flex-wrap: wrap; }
     .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--fg);
-      background: var(--card-2);
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      padding: 4px 10px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-size: 13px; font-weight: 500;
+      color: var(--ink); background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-pill);
+      padding: 4px 12px;
     }
-    .chip.accent { color: var(--accent); background: var(--accent-soft); border-color: rgba(43,92,255,0.20); }
+    .chip.accent { color: var(--brand-accent); background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.20); }
+    .chip.gray-on-gray { background: var(--canvas); border-color: var(--surface-strong); }
+
+    /* keyboard keys */
     .kbd {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 32px;
-      height: 32px;
-      padding: 0 8px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--fg);
-      background: var(--card);
-      border: 1px solid var(--rule-strong);
-      border-bottom-width: 2px;
-      border-radius: 6px;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 30px; height: 30px; padding: 0 8px;
+      font-family: var(--mono); font-size: 13px; font-weight: 500;
+      color: var(--ink); background: var(--canvas);
+      border: 1px solid var(--surface-strong); border-bottom-width: 2px;
+      border-radius: var(--r-sm);
       transition: transform 100ms ease, border-color 140ms ease;
     }
-    .kbd:hover { transform: translateY(1px); border-bottom-width: 1px; border-color: var(--fg); }
+    .kbd:hover { transform: translateY(1px); border-bottom-width: 1px; border-color: var(--ink); }
 
-    /* Positioning grid */
+    /* placeholder (labeled screenshot slot) */
+    .ph {
+      position: relative; width: 100%;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    section.gray .ph { background: var(--canvas); }
+    .ph::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 calc(50% - 0.5px), var(--hairline-soft) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px) 100%),
+        linear-gradient(0deg, transparent 0 calc(50% - 0.5px), var(--hairline-soft) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px) 100%);
+      opacity: 0.7; pointer-events: none;
+    }
+    .ph-body {
+      position: relative; display: grid; place-items: center; gap: 8px;
+      padding: 40px 20px; text-align: center;
+    }
+    .ph-dim { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .ph-desc { font-size: 13px; color: var(--muted); max-width: 40ch; line-height: 1.5; }
+    .ph-tag {
+      display: inline-block; font-family: var(--mono); font-size: 10.5px;
+      color: var(--muted-soft); border: 1px solid var(--hairline);
+      border-radius: var(--r-sm); padding: 3px 8px; margin-top: 4px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ===================================================
+       Positioning grid — 2x2 hairline
+       =================================================== */
     .not-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      margin-top: 32px;
-      border-top: 1px solid var(--rule);
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--hairline);
+      margin-top: var(--sp-xl);
     }
     .not-item {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--rule);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 16px;
-      align-items: baseline;
+      padding: var(--sp-lg) 0;
+      border-bottom: 1px solid var(--hairline);
+      display: grid; grid-template-columns: auto 1fr; gap: var(--sp-md);
     }
-    .not-item:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); }
-    .not-item:nth-child(even) { padding-left: 32px; }
-    .not-item .no { font-family: var(--mono); font-size: 13px; color: var(--muted-2); }
-    .not-item h3 { font-size: 17px; font-weight: 600; margin: 0 0 6px; color: var(--fg); }
-    .not-item p { font-size: 15px; line-height: 1.55; color: var(--muted); margin: 0; }
+    .not-item:nth-child(odd) { padding-right: var(--sp-xl); border-right: 1px solid var(--hairline); }
+    .not-item:nth-child(even) { padding-left: var(--sp-xl); }
+    .not-item .no { font-family: var(--mono); font-size: 13px; color: var(--muted-soft); }
+    .not-item h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+    .not-item p { font-size: 14px; color: var(--body-text); margin: 0; line-height: 1.55; }
     @media (max-width: 700px) {
       .not-grid { grid-template-columns: 1fr; }
       .not-item:nth-child(odd) { padding-right: 0; border-right: 0; }
       .not-item:nth-child(even) { padding-left: 0; }
     }
 
-    /* CTA card */
-    .cta-card { text-align: center; }
-    .cta-card::before {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 60%;
-      background: radial-gradient(50% 80% at 50% 100%, rgba(43,92,255,0.09), transparent 70%);
-      pointer-events: none;
+    /* ===================================================
+       CTA band card — surface-card, 48px padding
+       =================================================== */
+    .cta-card {
+      background: var(--surface-card);
+      border-radius: var(--r-lg);
+      padding: var(--sp-xxl);
+      text-align: center;
     }
-    .cta-card > * { position: relative; }
-    .cta-card .btn-full.primary {
-      display: inline-flex;
-      width: auto;
-      padding: 16px 28px;
-      margin-top: 10px;
-    }
-    .cta-card h2 { margin: 0 auto 12px; max-width: 18ch; }
-    .cta-card p {
-      color: var(--muted);
-      max-width: 44ch;
-      margin: 0 auto 28px;
-      font-size: 17px;
-    }
+    .cta-card .eyebrow { margin-bottom: var(--sp-md); }
+    .cta-card h2 { margin: 0 auto var(--sp-sm); max-width: 20ch; }
+    .cta-card .lede { max-width: 44ch; margin: 0 auto var(--sp-lg); font-size: 16px; color: var(--body-text); line-height: 1.55; }
 
-    /* Maker */
+    /* ===================================================
+       Maker card
+       =================================================== */
     .maker {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 28px;
-      align-items: center;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: var(--sp-lg); align-items: center;
+      background: var(--surface-card);
+      border-radius: var(--r-lg);
+      padding: var(--sp-xl);
     }
     .maker .avatar {
-      width: 104px; height: 104px;
-      border-radius: 50%;
-      background: var(--card-2);
-      border: 1px solid var(--rule-strong);
-      display: grid;
-      place-items: center;
-      color: var(--muted-2);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-align: center;
-      line-height: 1.25;
+      width: 88px; height: 88px; border-radius: var(--r-pill);
+      background: var(--canvas); border: 1px solid var(--hairline);
+      display: grid; place-items: center;
+      color: var(--muted-soft);
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em;
+      text-align: center; line-height: 1.3;
     }
-    .maker h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0 0 8px;
-    }
-    .maker p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-      margin: 0;
-      max-width: 62ch;
-    }
-    .maker a {
-      color: var(--fg);
-      border-bottom: 1px solid var(--rule-strong);
-    }
-    .maker a:hover { border-bottom-color: var(--fg); }
-    @media (max-width: 560px) {
-      .maker { grid-template-columns: 1fr; text-align: left; }
-    }
+    .maker h3 { font-size: 18px; font-weight: 600; margin: 0 0 6px; }
+    .maker p { font-size: 15px; color: var(--body-text); margin: 0; line-height: 1.55; max-width: 62ch; }
+    .maker a { color: var(--ink); border-bottom: 1px solid var(--surface-strong); }
+    .maker a:hover { border-bottom-color: var(--ink); }
+    @media (max-width: 560px) { .maker { grid-template-columns: 1fr; } }
 
-    /* Footer */
+    /* ===================================================
+       Footer — dark surface, on-dark-soft text
+       =================================================== */
     footer {
-      padding: 48px 0 40px;
-      color: var(--muted);
-      font-size: 13.5px;
-      max-width: 1360px;
-      margin: 0 auto;
-      padding-left: 24px;
-      padding-right: 24px;
+      background: var(--surface-dark);
+      color: var(--on-dark-soft);
+      padding: 64px 0 32px;
     }
-    footer .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
+    footer .wordmark {
+      font-size: 20px; font-weight: 600; letter-spacing: -0.014em; color: var(--on-dark);
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    footer .brand { color: var(--fg); font-weight: 600; }
-    footer .links {
-      display: inline-flex;
-      gap: 24px;
-      flex-wrap: wrap;
+    footer .wordmark .dot {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: var(--on-dark); color: var(--surface-dark);
+      display: inline-grid; place-items: center;
+      font-size: 12px; font-weight: 700;
     }
-    footer a { transition: color 140ms ease; }
-    footer a:hover { color: var(--fg); }
-    footer .meta {
-      width: 100%;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
+    footer .cols {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 32px; margin-top: var(--sp-xl);
+    }
+    @media (max-width: 720px) { footer .cols { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { footer .cols { grid-template-columns: 1fr; } }
+    footer .col-title {
+      font-size: 13px; font-weight: 600; color: var(--on-dark);
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em;
       font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted-2);
-      letter-spacing: 0.02em;
+    }
+    footer .col a {
+      display: block; font-size: 14px; color: var(--on-dark-soft);
+      padding: 6px 0; transition: color 140ms ease;
+    }
+    footer .col a:hover { color: var(--on-dark); }
+    footer .tag {
+      font-size: 14px; color: var(--on-dark-soft); line-height: 1.5; max-width: 34ch;
+    }
+    footer .meta {
+      margin-top: var(--sp-xxl); padding-top: var(--sp-lg);
+      border-top: 1px solid var(--surface-dark-elevated);
+      display: flex; justify-content: space-between; gap: var(--sp-md);
+      font-family: var(--mono); font-size: 12px; color: var(--muted-soft);
+      letter-spacing: 0.02em; flex-wrap: wrap;
     }
 
-    /* Reveal */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms ease; }
+    /* ===================================================
+       Reveal on scroll
+       =================================================== */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms ease; }
     .reveal.in { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 80ms; }
-    .reveal-delay-2 { transition-delay: 160ms; }
-    .reveal-delay-3 { transition-delay: 240ms; }
-
+    .reveal-1 { transition-delay: 80ms; }
+    .reveal-2 { transition-delay: 160ms; }
+    .reveal-3 { transition-delay: 240ms; }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
       .reveal { opacity: 1; transform: none; }
@@ -703,48 +557,49 @@
 
 <body>
 
-  <!-- ============ NAV ============ -->
+  <!-- ============ NAV (64px, canvas) ============ -->
   <nav id="nav">
     <div class="wrap">
       <div class="row">
-        <a class="brand" href="#top">Opsy&nbsp;OS</a>
+        <a class="brand" href="#top">
+          <span class="dot">O</span>
+          <span>Opsy&nbsp;OS</span>
+        </a>
         <div class="links">
-          <a href="#invoicing">Features
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </a>
+          <a href="#f-invoicing">Features</a>
+          <a href="#f-payments">₹ &amp; UPI</a>
           <a href="#cta">Pricing</a>
           <a href="#maker">Made&nbsp;by</a>
         </div>
-        <a class="btn-nav" href="https://app.opsyos.com" target="_blank" rel="noopener">
+        <a class="btn-primary" href="https://app.opsyos.com" target="_blank" rel="noopener">
           Go to app
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </a>
       </div>
     </div>
   </nav>
   <span id="top"></span>
 
-  <!-- ============ HERO CARD ============ -->
-  <div class="card-outer">
-    <div class="card">
-      <div class="hero-card">
-
-        <!-- LEFT COLUMN -->
+  <!-- ============ HERO ============ -->
+  <section>
+    <div class="wrap">
+      <div class="hero">
+        <!-- LEFT -->
         <div>
-          <a href="https://app.opsyos.com" target="_blank" rel="noopener" class="pill reveal">
+          <a href="https://app.opsyos.com" target="_blank" rel="noopener" class="badge-pill reveal">
             Opsy&nbsp;OS · Free for the first year
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
 
-          <h1 class="reveal reveal-delay-1">The whole freelance business, in one calm place.</h1>
+          <h1 class="display-xl reveal reveal-1">The whole freelance business, in one calm place.</h1>
 
-          <p class="hero-sub reveal reveal-delay-2">
+          <p class="sub reveal reveal-2">
             Clients, projects, invoices in&nbsp;₹, notes, and a client portal that only needs a UPI&nbsp;ID. Made for the people who work for themselves.
           </p>
 
-          <div class="btn-stack reveal reveal-delay-3">
-            <a class="btn-full primary" href="https://app.opsyos.com" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+          <div class="btn-stack reveal reveal-3">
+            <a class="btn-primary" href="https://app.opsyos.com" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
                 <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
                 <path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
                 <path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
@@ -752,54 +607,50 @@
               </svg>
               Sign up with Google
             </a>
-            <a class="btn-full secondary" href="#invoicing">
+            <a class="btn-secondary" href="#f-invoicing">
               See how it works
-              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
           </div>
 
-          <p class="fineprint reveal reveal-delay-3">No card required · Free for the first year</p>
+          <p class="fineprint reveal reveal-3">No card required · Free for the first year</p>
         </div>
 
-        <!-- RIGHT COLUMN — mock widget -->
-        <div class="widget reveal reveal-delay-2">
-          <!-- Invoice preview -->
-          <div class="w-card">
-            <div class="w-header">
+        <!-- RIGHT: hero-app-mockup-card -->
+        <div class="hero-mockup reveal reveal-2">
+          <!-- Invoice panel -->
+          <div class="w-panel">
+            <div class="w-head">
               <div class="w-avatar">AR</div>
               <div>
-                <div class="w-client-name">Aditi Rao</div>
-                <div class="w-title">Website redesign — Milestone 2</div>
+                <div class="w-name">Aditi Rao</div>
+                <div class="w-title-line">Website redesign — M2</div>
               </div>
             </div>
             <p class="w-desc">Homepage, auth screens, and the case-study template. Paid in three parts.</p>
 
             <div class="w-row">
-              <span class="lbl-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
-              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
               <div class="w-amounts">
-                <span class="w-amount">₹15,000</span>
-                <span class="w-amount active">₹30,000</span>
-                <span class="w-amount">₹45,000</span>
+                <span class="w-amount">₹15k</span>
+                <span class="w-amount active">₹30k</span>
+                <span class="w-amount">₹45k</span>
               </div>
             </div>
 
             <div class="w-row">
-              <span class="lbl-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
-              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
               <span>Due 20 June · IST</span>
             </div>
 
-            <div class="w-row" style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); justify-content: space-between;">
+            <div class="w-row" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hairline); justify-content: space-between;">
               <span class="w-inv-chip">INV-2026-014</span>
-              <span style="font-size: 12px; color: var(--muted-2); font-family: var(--mono);">UPI · dinkar@icici</span>
+              <span style="font-size: 11px; color: var(--muted-soft); font-family: var(--mono);">UPI · dinkar@icici</span>
             </div>
           </div>
 
-          <!-- Mini calendar -->
-          <div class="w-card">
+          <!-- Calendar panel -->
+          <div class="w-panel">
             <div class="w-cal-head">
               <span class="w-cal-month">June</span>
               <span class="w-cal-year">2026</span>
@@ -812,59 +663,35 @@
               <div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div>
               <div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day muted">1</div><div class="day muted">2</div><div class="day muted">3</div><div class="day muted">4</div>
             </div>
-            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); display: flex; gap: 14px; font-size: 11.5px; color: var(--muted);">
-              <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span>Paid</span>
-              <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--fg);display:inline-block"></span>Due</span>
+            <div class="w-legend">
+              <span><span class="dot" style="background: var(--success);"></span>Paid</span>
+              <span><span class="dot" style="background: var(--ink);"></span>Due</span>
             </div>
           </div>
         </div>
-
       </div>
-
-      <!-- Trust row (inside hero card) -->
-      <div class="trust reveal">
-        <span class="trust-item">
-          <span class="icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          </span>
-          <span><strong>Free</strong> for the first year</span>
-        </span>
-        <span class="trust-item">
-          <span class="icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </span>
-          <span>Google sign-in · <strong>No passwords</strong></span>
-        </span>
-        <span class="trust-item">
-          <span class="icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-8 11-8 11z" fill="none"/></svg>
-          </span>
-          <span><strong>Made in India</strong> · ₹ and UPI, native</span>
-        </span>
-      </div>
-
     </div>
-  </div>
+  </section>
 
-  <!-- ============ FEATURE 01 · INVOICING ============ -->
-  <div class="card-outer" id="invoicing">
-    <div class="card">
+  <!-- ============ FEATURE 01 · INVOICING (light gray band) ============ -->
+  <section class="gray" id="f-invoicing">
+    <div class="wrap">
       <div class="split">
         <div class="copy reveal">
-          <span class="section-eyebrow"><span class="num">01</span>Invoicing</span>
-          <h2>Not accounting software. An invoicing app you'll actually want to open.</h2>
+          <span class="eyebrow"><span class="num">01</span> Invoicing</span>
+          <h2 class="display-lg">Not accounting software. An invoicing app you'll want to open.</h2>
           <p class="lede">
             Live-preview editor — form on the left, brand-styled invoice on the right, updating as you type. Gapless per-year numbering assigned atomically at finalize. Draft → Sent → Partial → Paid lifecycle. Receipts track partial payments, so the balance is always computed, never wrongly stored.
           </p>
           <div class="chips">
             <span class="chip accent">INV-2026-001</span>
-            <span class="chip">Draft</span>
-            <span class="chip">Sent</span>
-            <span class="chip">Partial</span>
-            <span class="chip">Paid</span>
+            <span class="chip gray-on-gray">Draft</span>
+            <span class="chip gray-on-gray">Sent</span>
+            <span class="chip gray-on-gray">Partial</span>
+            <span class="chip gray-on-gray">Paid</span>
           </div>
         </div>
-        <div class="visual reveal reveal-delay-1">
+        <div class="visual reveal reveal-1">
           <div class="ph" style="aspect-ratio: 4 / 3;">
             <div class="ph-body">
               <span class="ph-dim">1200 × 900</span>
@@ -875,15 +702,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ FEATURE 02 · PAYMENTS ============ -->
-  <div class="card-outer">
-    <div class="card">
+  <!-- ============ FEATURE 02 · PAYMENTS (white band) ============ -->
+  <section id="f-payments">
+    <div class="wrap">
       <div class="split reverse">
         <div class="copy reveal">
-          <span class="section-eyebrow"><span class="num">02</span>Payments</span>
-          <h2>₹ and UPI, first-class.</h2>
+          <span class="eyebrow"><span class="num">02</span> Payments</span>
+          <h2 class="display-lg">₹ and UPI, first-class.</h2>
           <p class="lede">
             The client portal shows a UPI QR code, your UPI ID, and bank details. No gateway, no cut — clients pay you directly and you log the receipt. One share link per client. No accounts to create, no passwords to reset.
           </p>
@@ -891,10 +718,10 @@
             <span class="chip">UPI QR</span>
             <span class="chip">₹ INR</span>
             <span class="chip">GST not applicable</span>
-            <span class="chip">Token-based portal</span>
+            <span class="chip">Token portal</span>
           </div>
         </div>
-        <div class="visual reveal reveal-delay-1">
+        <div class="visual reveal reveal-1">
           <div class="ph" style="aspect-ratio: 4 / 3;">
             <div class="ph-body">
               <span class="ph-dim">1200 × 900</span>
@@ -905,27 +732,27 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ FEATURE 03 · OS LAYER ============ -->
-  <div class="card-outer">
-    <div class="card">
+  <!-- ============ FEATURE 03 · OS LAYER (gray band) ============ -->
+  <section class="gray">
+    <div class="wrap">
       <div class="split">
         <div class="copy reveal">
-          <span class="section-eyebrow"><span class="num">03</span>The OS layer</span>
-          <h2>Not just invoices. The whole practice.</h2>
+          <span class="eyebrow"><span class="num">03</span> The OS layer</span>
+          <h2 class="display-lg">Not just invoices. The whole practice.</h2>
           <p class="lede">
             Clients from lead to closed. Projects with statuses and retainers. Tasks with priorities and due dates. Notion-style notes with icons. A dashboard for revenue, outstanding balance, and what's been sent this month.
           </p>
           <div class="chips">
-            <span class="chip">Clients</span>
-            <span class="chip">Projects</span>
-            <span class="chip">Tasks</span>
-            <span class="chip">Notes</span>
-            <span class="chip">Dashboard</span>
+            <span class="chip gray-on-gray">Clients</span>
+            <span class="chip gray-on-gray">Projects</span>
+            <span class="chip gray-on-gray">Tasks</span>
+            <span class="chip gray-on-gray">Notes</span>
+            <span class="chip gray-on-gray">Dashboard</span>
           </div>
         </div>
-        <div class="visual reveal reveal-delay-1">
+        <div class="visual reveal reveal-1">
           <div class="ph" style="aspect-ratio: 4 / 3;">
             <div class="ph-body">
               <span class="ph-dim">1200 × 900</span>
@@ -936,17 +763,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ FEATURE 04 · KEYBOARD ============ -->
-  <div class="card-outer">
-    <div class="card">
+  <!-- ============ FEATURE 04 · KEYBOARD-FIRST (white band) ============ -->
+  <section>
+    <div class="wrap">
       <div class="split reverse">
         <div class="copy reveal">
-          <span class="section-eyebrow"><span class="num">04</span>Keyboard-first</span>
-          <h2>⌘K to anywhere. Space to create.</h2>
+          <span class="eyebrow"><span class="num">04</span> Keyboard-first</span>
+          <h2 class="display-lg">⌘K to anywhere. Space to create.</h2>
           <p class="lede">
-            Command palette jumps to any client, project, invoice, or note. On any list, Space means "new ___" — context-aware. <span class="chip" style="margin: 0 4px;">?</span> opens help wherever you are.
+            Command palette jumps to any client, project, invoice, or note. On any list, Space means "new ___" — context-aware. <span class="kbd">?</span> opens help wherever you are.
           </p>
           <div class="chips">
             <span class="kbd">⌘</span>
@@ -955,7 +782,7 @@
             <span class="kbd">?</span>
           </div>
         </div>
-        <div class="visual reveal reveal-delay-1">
+        <div class="visual reveal reveal-1">
           <div class="ph" style="aspect-ratio: 4 / 3;">
             <div class="ph-body">
               <span class="ph-dim">1200 × 900</span>
@@ -966,16 +793,16 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ POSITIONING (what it isn't) ============ -->
-  <div class="card-outer">
-    <div class="card">
+  <!-- ============ POSITIONING (gray band) ============ -->
+  <section class="gray">
+    <div class="wrap">
       <div class="reveal">
-        <span class="section-eyebrow">Positioning</span>
-        <h2>And a few things Opsy&nbsp;OS isn't.</h2>
+        <span class="eyebrow">Positioning</span>
+        <h2 class="display-lg">And a few things Opsy&nbsp;OS isn't.</h2>
       </div>
-      <div class="not-grid reveal reveal-delay-1">
+      <div class="not-grid reveal reveal-1">
         <div class="not-item">
           <span class="no">01</span>
           <div>
@@ -1006,17 +833,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ CTA ============ -->
-  <div class="card-outer" id="cta">
-    <div class="card cta-card">
-      <div class="reveal">
-        <span class="section-eyebrow">Free for the first year</span>
-        <h2>Just open the app.</h2>
-        <p>Free for the first year while I keep shipping. After that, we'll figure out a fair price.</p>
-        <a class="btn-full primary" href="https://app.opsyos.com" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+  <!-- ============ CTA BAND (surface-card card on white) ============ -->
+  <section id="cta">
+    <div class="wrap">
+      <div class="cta-card reveal">
+        <span class="eyebrow">Free for the first year</span>
+        <h2 class="display-md">Just open the app.</h2>
+        <p class="lede">Free for the first year while I keep shipping. After that, we'll figure out a fair price.</p>
+        <a class="btn-primary" href="https://app.opsyos.com" target="_blank" rel="noopener" style="height: 44px; padding: 12px 22px;">
+          <svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
             <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
             <path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
             <path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
@@ -1026,36 +853,57 @@
         </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ MAKER ============ -->
-  <div class="card-outer" id="maker">
-    <div class="card">
+  <!-- ============ MAKER (gray band, gray card) ============ -->
+  <section class="gray" id="maker">
+    <div class="wrap">
       <div class="maker reveal">
         <div class="avatar">128×128<br>portrait</div>
         <div>
-          <h3>Built by Dinkar Sable.</h3>
+          <h3 class="title-md" style="margin-bottom: 6px;">Built by Dinkar Sable.</h3>
           <p>
             A freelancer working out of Pune, India. I built Opsy&nbsp;OS because I was tired of running my practice across Notion, Excel, a PDF template, and WhatsApp reminders. If you're a freelancer and something feels off, tell me — you can catch me at <a href="https://dinkarsable.com" target="_blank" rel="noopener">dinkarsable.com</a>.
           </p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- ============ FOOTER (dark) ============ -->
   <footer>
-    <div class="row">
-      <span class="brand">Opsy&nbsp;OS · The Freelance OS</span>
-      <div class="links">
-        <a href="https://app.opsyos.com" target="_blank" rel="noopener">Open the app</a>
-        <a href="https://dinkarsable.com" target="_blank" rel="noopener">Maker</a>
-        <a href="mailto:dinkarsablehere@gmail.com">Contact</a>
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <span class="wordmark">
+            <span class="dot">O</span>
+            Opsy&nbsp;OS
+          </span>
+          <p class="tag" style="margin-top: 14px;">The Freelance OS. Built for freelancers, by a freelancer. Free for the first year.</p>
+        </div>
+        <div class="col">
+          <div class="col-title">Product</div>
+          <a href="https://app.opsyos.com" target="_blank" rel="noopener">Open the app</a>
+          <a href="#f-invoicing">Invoicing</a>
+          <a href="#f-payments">₹ &amp; UPI</a>
+          <a href="#cta">Pricing</a>
+        </div>
+        <div class="col">
+          <div class="col-title">About</div>
+          <a href="#maker">Made by</a>
+          <a href="https://dinkarsable.com" target="_blank" rel="noopener">dinkarsable.com</a>
+          <a href="mailto:dinkarsablehere@gmail.com">Contact</a>
+        </div>
+        <div class="col">
+          <div class="col-title">Legal</div>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
       </div>
-    </div>
-    <div class="meta">
-      <span>Made in Pune, India</span>
-      <span>v0.1 · 2026</span>
+      <div class="meta">
+        <span>Made in Pune, India</span>
+        <span>v0.1 · 2026</span>
+      </div>
     </div>
   </footer>
 
