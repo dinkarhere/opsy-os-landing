@@ -527,26 +527,6 @@ button { font-family: inherit; }
   margin-left: 8px;
 }
 .mock-body { padding: 18px; }
-.theme-toggle {
-  margin-left: auto;
-  width: 24px; height: 24px;
-  border-radius: var(--r-sm);
-  border: 1px solid var(--hairline);
-  background: var(--canvas);
-  color: var(--muted);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: color 140ms ease, border-color 140ms ease;
-}
-.theme-toggle:hover { color: var(--ink); border-color: var(--surface-strong); }
-.shot-frame { position: relative; background: var(--surface-soft); }
-.shot-frame img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 2880 / 1634;
-  object-fit: cover;
-}
 
 /* Invoice editor mock */
 .inv-mock-grid {
