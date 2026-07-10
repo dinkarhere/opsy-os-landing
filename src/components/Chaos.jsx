@@ -42,12 +42,18 @@ export default function Chaos() {
           </motion.span>
           <motion.span
             className="chaos-opsy"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.4, rotate: -12 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={viewportOnce}
-            transition={{ delay: 0.72, type: 'spring', stiffness: 300, damping: 18 }}
+            transition={{ delay: 0.72, type: 'spring', stiffness: 240, damping: 11 }}
+            whileHover={{ scale: 1.12, rotate: -3 }}
           >
-            <img src="/Icons/logo-white.svg" alt="Opsy OS" />
+            <motion.img
+              src="/Icons/logo-black.svg"
+              alt="Opsy OS"
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut', delay: 1.4 }}
+            />
           </motion.span>
         </div>
       </div>

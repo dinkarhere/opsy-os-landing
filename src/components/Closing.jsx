@@ -89,8 +89,8 @@ export function Maker() {
           viewport={viewportOnce}
           transition={{ duration: 0.6 }}
         >
-          <div className="avatar" style={{ background: 'linear-gradient(135deg, #1a1a1a, #3d3d3d)', color: '#fff', fontFamily: 'var(--sans)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.02em' }}>
-            DS
+          <div className="avatar">
+            <img src="/shots/dinkar.png" alt="Dinkar Sable" />
           </div>
           <div>
             <h3>Built by Dinkar Sable.</h3>

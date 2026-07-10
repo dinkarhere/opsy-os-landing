@@ -148,7 +148,7 @@ button { font-family: inherit; }
   height: 64px;
 }
 .nav-logo { display: inline-flex; align-items: center; }
-.nav-logo img { height: 15px; width: auto; display: block; }
+.nav-logo img { height: 21px; width: auto; display: block; }
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links a {
   font-size: 14px;
@@ -429,13 +429,9 @@ button { font-family: inherit; }
 .chaos-opsy {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: var(--ink);
-  border-radius: var(--r-md);
-  padding: 12px 20px;
-  box-shadow: var(--shadow-md);
+  cursor: default;
 }
-.chaos-opsy img { height: 14px; width: auto; display: block; }
+.chaos-opsy img { height: 30px; width: auto; display: block; }
 .chaos-head { text-align: center; max-width: 60ch; margin: 0 auto; }
 .chaos-head h2 { margin-bottom: 12px; }
 .chaos-head p { color: var(--muted); font-size: 16px; margin: 0; }
@@ -531,6 +527,26 @@ button { font-family: inherit; }
   margin-left: 8px;
 }
 .mock-body { padding: 18px; }
+.theme-toggle {
+  margin-left: auto;
+  width: 24px; height: 24px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--surface-strong); }
+.shot-frame { position: relative; background: var(--surface-soft); }
+.shot-frame img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 2000 / 1135;
+  object-fit: cover;
+}
 
 /* Invoice editor mock */
 .inv-mock-grid {
@@ -901,15 +917,14 @@ button { font-family: inherit; }
   border-radius: 50%;
   background: var(--canvas);
   border: 1px solid var(--hairline);
-  display: grid;
-  place-items: center;
-  color: var(--muted-soft);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  text-align: center;
-  line-height: 1.3;
   overflow: hidden;
+  flex-shrink: 0;
+}
+.maker .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .maker h3 { font-size: 18px; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
 .maker p { font-size: 15px; color: var(--body-text); margin: 0; line-height: 1.55; max-width: 62ch; }
