@@ -5,7 +5,7 @@ const TOOLS = ['Notion', 'Excel', 'PDF template', 'WhatsApp reminders']
 
 export default function Chaos() {
   return (
-    <section className="chaos-section">
+    <section className="chaos-section" id="how">
       <div className="wrap">
         <motion.div
           className="chaos-head"
@@ -14,8 +14,12 @@ export default function Chaos() {
           viewport={viewportOnce}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="display-md">Right now, your business lives in five tabs.</h2>
-          <p>Client list in Notion. Numbers in Excel. Invoices from a PDF template. Payment reminders on WhatsApp. Opsy&nbsp;OS folds all of it into one keyboard-fast app.</p>
+          <h2 className="display-md">Every tool switch is a place something falls through the cracks.</h2>
+          <p>
+            The invoice you forgot to follow up on. The client note that&rsquo;s on your phone instead
+            of at your desk. The &ldquo;did they pay yet?&rdquo; you can&rsquo;t answer without opening three
+            apps. It never looks like one big failure — it&rsquo;s a slow leak of hours.
+          </p>
         </motion.div>
 
         <div className="chaos-line">

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { APP_URL, viewportOnce } from '../anim.js'
+import { APP_URL, CONTACT_EMAIL, FREE_UNTIL_LABEL, PRICE_MONTHLY, viewportOnce } from '../anim.js'
 import { GoogleG } from './Hero.jsx'
 
 export function NotList() {
   const items = [
-    { t: 'Not accounting software.', p: 'No ledgers, journals, GST returns, or TDS. If you need those, keep your accountant.' },
-    { t: 'Not a payment processor.', p: 'You keep 100%. Clients pay you directly over UPI or bank; you log the receipt.' },
-    { t: 'Not a CRM.', p: 'A light client model — leads, negotiations, active, closed — not a sales pipeline with forecasts.' },
-    { t: 'Not a team tool.', p: 'Single-owner workspaces today. If teams come, they’ll come deliberately.' },
+    { t: 'Not accounting software.', p: 'No ledgers, journals, GST returns, or TDS. If you need those, keep your accountant — Opsy OS handles the part of the business between you and your clients.' },
+    { t: 'Not a payment processor.', p: 'No gateway, no percentage cut, no “funds available in 3–5 business days.” Clients pay you directly; you keep 100% and log the receipt.' },
+    { t: 'Not a CRM.', p: 'Clients move through a light pipeline — lead, negotiation, active, closed — not a sales-forecast dashboard you’ll never fill in.' },
+    { t: 'Not a team tool.', p: 'Single-owner workspaces, on purpose. No seats, roles, or permissions to pay for or configure around.' },
   ]
   return (
     <section className="not-section">
@@ -19,8 +19,8 @@ export function NotList() {
           viewport={viewportOnce}
           transition={{ duration: 0.6 }}
         >
-          <span className="eyebrow">Positioning</span>
-          <h2 className="display-lg">And a few things Opsy&nbsp;OS isn&rsquo;t.</h2>
+          <span className="eyebrow">Deliberately narrow</span>
+          <h2 className="display-lg">Everything your practice needs. Nothing it doesn&rsquo;t.</h2>
         </motion.div>
         <div className="not-grid">
           {items.map((it, i) => (
@@ -47,7 +47,7 @@ export function NotList() {
 
 export function CtaBand() {
   return (
-    <section className="cta-section" id="pricing">
+    <section className="cta-section">
       <div className="wrap">
         <motion.div
           className="cta-card"
@@ -58,7 +58,8 @@ export function CtaBand() {
         >
           <h2 className="display-lg">Stop juggling. Start invoicing.</h2>
           <p className="cta-sub">
-            Free for the first year while I keep shipping. After that, we&rsquo;ll figure out a fair price — no surprise paywalls on your data.
+            Signing up takes two minutes. Free for everyone until {FREE_UNTIL_LABEL} — then one
+            simple plan. No card required, no surprise charges.
           </p>
           <motion.a
             className="btn-primary btn-lg"
@@ -69,9 +70,9 @@ export function CtaBand() {
             whileTap={{ scale: 0.98 }}
           >
             <GoogleG />
-            Sign up with Google
+            Sign up with Google — free right now
           </motion.a>
-          <div className="cta-fineprint">No card required · Your data exports any time</div>
+          <div className="cta-fineprint">{PRICE_MONTHLY}/month after the free window · Your data exports any time</div>
         </motion.div>
       </div>
     </section>
@@ -95,9 +96,11 @@ export function Maker() {
           <div>
             <h3>Built by Dinkar Sable.</h3>
             <p>
-              A freelancer working out of Pune, India. I built Opsy&nbsp;OS because I was tired of running my
-              practice across Notion, Excel, a PDF template, and WhatsApp reminders. It sends my real invoices
-              to my real clients. If something feels off, tell me — I&rsquo;m at{' '}
+              A freelancer working out of Pune, India. I built Opsy&nbsp;OS because my own practice
+              was scattered across Notion, Excel, a PDF template, and WhatsApp reminders. It sends
+              my real invoices to my real clients, every week. If something feels off, tell me —
+              feedback lands straight in my inbox at{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>, or find me at{' '}
               <a href="https://dinkarsable.com" target="_blank" rel="noopener">dinkarsable.com</a>.
             </p>
           </div>
@@ -116,7 +119,7 @@ export function Footer() {
             <span className="footer-logo">
               <img src="/Icons/logo-white.svg" alt="Opsy OS" />
             </span>
-            <p className="tag">The Freelance OS. Built for freelancers, by a freelancer. Free for the first year.</p>
+            <p className="tag">The whole freelance business, in one calm place. Free for everyone until {FREE_UNTIL_LABEL}.</p>
           </div>
           <div className="col">
             <div className="col-title">Product</div>
@@ -124,22 +127,23 @@ export function Footer() {
             <a href="#invoicing">Invoicing</a>
             <a href="#payments">₹ &amp; UPI</a>
             <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
           </div>
           <div className="col">
-            <div className="col-title">About</div>
-            <a href="#top">Made by</a>
+            <div className="col-title">Company</div>
             <a href="https://dinkarsable.com" target="_blank" rel="noopener">dinkarsable.com</a>
-            <a href="mailto:dinkarsablehere@gmail.com">Contact</a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
           </div>
           <div className="col">
             <div className="col-title">Legal</div>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/refunds">Refunds &amp; Cancellation</a>
           </div>
         </div>
         <div className="footer-meta">
           <span>Made in Pune, India</span>
-          <span>v0.1 · 2026</span>
+          <span>© 2026 Opsy OS</span>
         </div>
       </div>
     </footer>
@@ -163,7 +167,7 @@ export function MobileCta() {
         >
           <a className="btn-primary" href={APP_URL} target="_blank" rel="noopener">
             <GoogleG size={15} />
-            Open Opsy OS — free for a year
+            Sign up free — Opsy OS
           </a>
         </motion.div>
       )}

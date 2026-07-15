@@ -49,7 +49,7 @@ function MockWindow({ title, children }) {
 /* ---------- 01 · Invoice editor mock ---------- */
 function InvoiceMock() {
   return (
-    <MockWindow title="opsyos.com — New invoice">
+    <MockWindow title="app.opsyos.com — New invoice">
       <div className="inv-mock-grid">
         <div>
           <div className="form-field">
@@ -66,7 +66,7 @@ function InvoiceMock() {
           </div>
           <div className="form-field">
             <div className="form-label">Due date</div>
-            <div className="form-input">20 June 2026</div>
+            <div className="form-input">20 July 2026</div>
           </div>
         </div>
         <div className="inv-preview">
@@ -193,14 +193,14 @@ function PortalMock() {
 /* ---------- 03 · Dashboard mock ---------- */
 function DashboardMock() {
   const bars = [28, 42, 35, 55, 48, 70, 62, 78, 66, 88, 74, 96]
-  const months = ['J', 'A', 'S', 'O', 'N', 'D', 'J', 'F', 'M', 'A', 'M', 'J']
+  const months = ['A', 'S', 'O', 'N', 'D', 'J', 'F', 'M', 'A', 'M', 'J', 'J']
   return (
-    <MockWindow title="opsyos.com — Dashboard">
+    <MockWindow title="app.opsyos.com — Dashboard">
       <div className="dash-stats">
         {[
           { lbl: 'Outstanding', val: '₹1,10,000', d: '3 invoices' },
-          { lbl: 'Sent this month', val: '₹1,85,000', d: '+22%' },
-          { lbl: 'Collected FY', val: '₹9,40,000', d: '+31%' },
+          { lbl: 'Paid this year', val: '₹9,40,000', d: '+31%' },
+          { lbl: 'Active clients', val: '7', d: '+2 this month' },
         ].map((s, i) => (
           <motion.div
             className="dash-stat"
@@ -257,7 +257,7 @@ function PaletteMock() {
   const results = [
     { g: 'Clients', items: [{ t: 'Aditi Rao — Meraki Studio', k: '↵', sel: true }] },
     { g: 'Invoices', items: [{ t: 'INV-2026-014 · ₹50,000 · Due', k: '' }, { t: 'INV-2026-009 · ₹30,000 · Paid', k: '' }] },
-    { g: 'Projects', items: [{ t: 'Website redesign — M2', k: '' }] },
+    { g: 'Create', items: [{ t: 'New task for Aditi Rao…', k: '' }] },
   ]
 
   return (
@@ -299,18 +299,18 @@ export default function Features() {
   return (
     <>
       <Section
-        id="invoicing" gray num="01" eyebrow="Invoicing"
-        title="Not accounting software. An invoicing app you'll want to open."
-        lede="Live-preview editor — form on the left, brand-styled invoice on the right, updating as you type. Gapless per-year numbering assigned atomically at finalize. Draft → Sent → Partial → Paid lifecycle, with receipts tracking every partial payment."
+        id="invoicing" num="01" eyebrow="Invoicing"
+        title="An invoicing app you'll actually want to open."
+        lede="Form on the left, brand-styled invoice on the right, updating as you type. Draft → Sent → Partial → Paid, with receipts tracking every partial payment. And every invoice gets a gapless, per-year number the moment you finalize it — assigned inside a database transaction, so numbers never collide or skip. Once numbered, it's locked: void it to correct a mistake, the way real bookkeeping works."
         chips={<NumberTicker />}
       >
         <InvoiceMock />
       </Section>
 
       <Section
-        id="payments" reverse num="02" eyebrow="Payments"
-        title="₹ and UPI, first-class."
-        lede="Your client gets one link — no account, no password. It shows every invoice, a UPI QR code, your UPI ID, and bank details. No gateway, no cut: clients pay you directly, you log the receipt."
+        id="payments" gray reverse num="02" eyebrow="Payments"
+        title="Get paid without a processor's cut."
+        lede="Each client gets their own portal — one link, no account to create. It shows their invoices, a UPI QR code, and your bank details. They pay you directly; you keep 100% and just log the receipt. No gateway fees, no waiting on a payout schedule."
         chips={
           <div className="chips">
             <span className="chip">UPI QR</span>
@@ -324,9 +324,9 @@ export default function Features() {
       </Section>
 
       <Section
-        id="os-layer" gray num="03" eyebrow="The OS layer"
-        title="Not just invoices. The whole practice."
-        lede="Clients from lead to closed. Projects with statuses and retainers. Tasks with priorities and due dates. Notion-style notes with icons. A dashboard that answers the only question that matters: where's the money?"
+        id="practice" num="03" eyebrow="One place, not five"
+        title="Clients, projects, tasks, notes — all cross-linked."
+        lede="Open a project and its tasks, notes, and invoices are already there — no hunting. Clients move through a light pipeline, from lead to closed. And the dashboard answers the only question that matters — where's the money? — with outstanding, paid this year, drafts, and active clients at a glance."
         chips={
           <div className="chips">
             <span className="chip">Clients</span>
@@ -341,15 +341,15 @@ export default function Features() {
       </Section>
 
       <Section
-        id="keyboard" reverse num="04" eyebrow="Keyboard-first"
-        title="⌘K to anywhere. Space to create."
-        lede={<>Command palette jumps to any client, project, invoice, or note. On any list, Space means &ldquo;new&nbsp;___&rdquo; — context-aware. <span className="kbd">?</span> opens help wherever you are.</>}
+        id="keyboard" gray reverse num="04" eyebrow="Keyboard-first"
+        title="Built to move at the speed you think."
+        lede="⌘K opens a palette that finds or creates anything — a client, a task, a note, an invoice — one field at a time, Enter to advance. Create something from inside a project and it's linked to that project automatically. No setup tax, no mouse required."
         chips={
           <div className="chips">
             <span className="kbd">⌘</span>
             <span className="kbd">K</span>
-            <span className="kbd">Space</span>
-            <span className="kbd">?</span>
+            <span className="kbd">↵</span>
+            <span className="kbd">esc</span>
           </div>
         }
       >

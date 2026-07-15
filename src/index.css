@@ -99,6 +99,13 @@ button { font-family: inherit; }
 }
 .eyebrow .num { color: var(--muted-soft); }
 
+/* Cal Sans display voice — falls back to Inter 600 (synthesis off so Cal Sans
+   renders at its natural weight instead of faux-bold) */
+.display-xl, .display-lg, .display-md {
+  font-family: "Cal Sans", var(--sans);
+  font-synthesis: none;
+}
+
 /* ============ Buttons ============ */
 .btn-primary, .btn-secondary {
   display: inline-flex;
@@ -820,7 +827,7 @@ button { font-family: inherit; }
 }
 
 /* ============ Not-grid ============ */
-.not-section { padding: var(--sp-section) 0; background: var(--surface-card); }
+.not-section { padding: var(--sp-section) 0; background: var(--canvas); }
 .not-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -879,53 +886,6 @@ button { font-family: inherit; }
   margin-top: 16px;
   font-size: 13px;
   color: var(--muted-soft);
-}
-
-/* ============ Countdown ============ */
-.countdown-section { padding: 0 0 var(--sp-section); }
-.countdown-eyebrow { color: var(--on-dark-soft); }
-.countdown-grid {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: clamp(10px, 2.5vw, 20px);
-  margin: 40px 0 0;
-  flex-wrap: wrap;
-}
-.countdown-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  min-width: 60px;
-}
-.countdown-num {
-  font-family: var(--mono);
-  font-size: clamp(32px, 6vw, 48px);
-  font-weight: 600;
-  color: var(--on-dark);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.countdown-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--on-dark-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.countdown-sep {
-  font-family: var(--mono);
-  font-size: clamp(32px, 6vw, 48px);
-  font-weight: 600;
-  color: var(--on-dark-soft);
-  line-height: 1;
-  margin-top: -2px;
-}
-@media (max-width: 480px) {
-  .countdown-grid { gap: 8px; }
-  .countdown-unit { min-width: 46px; }
 }
 
 /* ============ Maker ============ */
@@ -1020,3 +980,218 @@ button { font-family: inherit; }
 @media (max-width: 700px) {
   .mobile-cta { display: block; }
 }
+
+/* ============ Nav actions ============ */
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+.nav-signin {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--body-text);
+  transition: color 140ms ease;
+}
+.nav-signin:hover { color: var(--ink); }
+@media (max-width: 480px) {
+  .nav-signin { display: none; }
+}
+
+/* ============ Pricing ============ */
+.pricing-section { padding: var(--sp-section) 0; background: var(--surface-card); }
+.pricing-head { text-align: center; max-width: 62ch; margin: 0 auto 48px; }
+.pricing-head h2 { margin: 0 0 14px; }
+.pricing-sub { color: var(--muted); font-size: 16px; line-height: 1.55; margin: 0 auto; max-width: 52ch; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 880px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+@media (max-width: 760px) { .pricing-grid { grid-template-columns: 1fr; } }
+.price-card {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+.price-card.featured {
+  background: var(--surface-dark);
+  border-color: var(--surface-dark);
+  color: var(--on-dark-soft);
+}
+.price-plan {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted-soft);
+  margin-bottom: 10px;
+}
+.price-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  margin: 0 0 18px;
+}
+.price-card.featured .price-title { color: var(--on-dark); }
+.price-amount {
+  font-family: "Cal Sans", var(--sans);
+  font-synthesis: none;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--on-dark);
+  line-height: 1.1;
+}
+.price-amount .per {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--on-dark-soft);
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+.price-countdown { display: flex; gap: 10px; }
+.cd-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--surface-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  padding: 8px 0 6px;
+  min-width: 64px;
+  flex: 0 0 auto;
+}
+.cd-num {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.cd-unit {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.price-note { font-size: 13.5px; color: var(--muted); margin: 12px 0 0; line-height: 1.5; }
+.price-card.featured .price-note { color: var(--on-dark-soft); }
+.price-note s { color: var(--muted-soft); }
+.price-list {
+  list-style: none;
+  margin: 22px 0 26px;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+  flex: 1;
+}
+.price-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--body-text);
+}
+.price-list li svg { margin-top: 3px; }
+.price-card.featured .price-list li { color: var(--on-dark-soft); }
+.price-card .btn-primary, .price-card .btn-secondary { width: 100%; }
+.btn-primary.inverted { background: var(--on-dark); color: var(--ink); }
+.price-fineprint {
+  font-size: 12.5px;
+  color: var(--muted-soft);
+  line-height: 1.55;
+  margin: 14px 0 0;
+}
+
+/* ============ FAQ ============ */
+.faq-section { padding: var(--sp-section) 0; background: var(--canvas); }
+.faq-head { text-align: center; margin-bottom: 40px; }
+.faq-head h2 { margin: 0; }
+.faq-list { max-width: 720px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+}
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary svg {
+  color: var(--muted-soft);
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+.faq-item[open] summary svg { transform: rotate(180deg); }
+.faq-item p {
+  margin: 0;
+  padding: 0 28px 20px 4px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--body-text);
+  max-width: 66ch;
+}
+
+/* ============ Legal pages ============ */
+.legal-nav { position: sticky; }
+.legal { padding: 48px 0 var(--sp-section); }
+.legal-wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+.legal h1 { margin: 0 0 8px; }
+.legal-updated {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted-soft);
+  margin: 0 0 32px;
+}
+.legal-intro {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--body-text);
+  border-left: 3px solid var(--ink);
+  padding-left: 18px;
+  margin: 0 0 36px;
+}
+.legal h2 {
+  font-family: "Cal Sans", var(--sans);
+  font-synthesis: none;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 36px 0 10px;
+}
+.legal p { font-size: 15px; line-height: 1.65; color: var(--body-text); margin: 0 0 14px; }
+.legal ul { margin: 0 0 14px; padding-left: 22px; display: grid; gap: 8px; }
+.legal li { font-size: 15px; line-height: 1.6; color: var(--body-text); }
+.legal a { color: var(--ink); border-bottom: 1px solid var(--surface-strong); transition: border-color 140ms ease; }
+.legal a:hover { border-bottom-color: var(--ink); }
+.legal strong { color: var(--ink); font-weight: 600; }
+.legal-contact {
+  margin-top: 44px;
+  background: var(--surface-card);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+}
+.legal-contact p { margin: 0; font-size: 14.5px; }
+.legal-footer { padding: 28px 0; }
+.legal-footer .footer-meta { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal-links { display: inline-flex; gap: 18px; }
+.legal-links a { color: var(--on-dark-soft); transition: color 140ms ease; }
+.legal-links a:hover { color: var(--on-dark); }

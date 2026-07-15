@@ -29,20 +29,25 @@ export default function Nav() {
           <div className="nav-links">
             <a href="#invoicing">Invoicing</a>
             <a href="#payments">₹ &amp; UPI</a>
-            <a href="#os-layer">The OS layer</a>
             <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
           </div>
-          <motion.a
-            className="btn-primary"
-            href={APP_URL}
-            target="_blank"
-            rel="noopener"
-            whileHover={{ y: -1, boxShadow: '0 6px 20px rgba(17,17,17,0.18)' }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Go to app
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
-          </motion.a>
+          <div className="nav-actions">
+            <a className="nav-signin" href={APP_URL} target="_blank" rel="noopener">
+              Sign in
+            </a>
+            <motion.a
+              className="btn-primary"
+              href={APP_URL}
+              target="_blank"
+              rel="noopener"
+              whileHover={{ y: -1, boxShadow: '0 6px 20px rgba(17,17,17,0.18)' }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Get started
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+            </motion.a>
+          </div>
         </div>
       </div>
       <motion.div className="scroll-progress" style={{ scaleX: progress }} />

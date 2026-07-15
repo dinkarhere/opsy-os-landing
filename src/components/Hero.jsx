@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useScroll, useTransform, animate } from 'framer-motion'
-import { APP_URL, stagger, rise } from '../anim.js'
+import { APP_URL, FREE_UNTIL_LABEL, stagger, rise } from '../anim.js'
 
 export function GoogleG({ size = 16 }) {
   return (
@@ -59,7 +59,7 @@ function InvoicePanel() {
 
       <div className="w-row">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M8 2v4M16 2v4M3 10h18" /></svg>
-        <span>Due 20 June · IST</span>
+        <span>Due 20 July · IST</span>
       </div>
 
       <div className="w-total-row">
@@ -87,7 +87,7 @@ function CalendarPanel() {
   return (
     <div className="w-panel">
       <div className="w-cal-head">
-        <span className="w-cal-month">June</span>
+        <span className="w-cal-month">July</span>
         <span className="w-cal-year">2026</span>
       </div>
       <div className="w-cal">
@@ -125,24 +125,20 @@ export default function Hero() {
       <div className="wrap">
         <div className="hero">
           <motion.div variants={stagger} initial="hidden" animate="show">
-            <motion.a
-              variants={rise}
-              className="badge-pill"
-              href={APP_URL}
-              target="_blank"
-              rel="noopener"
-            >
+            <motion.a variants={rise} className="badge-pill" href="#pricing">
               <span className="live-dot" />
-              Free for the first year — while I keep shipping
+              Free for everyone until {FREE_UNTIL_LABEL}
             </motion.a>
 
             <motion.h1 variants={rise} className="display-xl">
-              The whole freelance business, in one calm place.
+              Your freelance business shouldn&rsquo;t live in five browser tabs.
             </motion.h1>
 
             <motion.p variants={rise} className="hero-sub">
-              Clients, projects, <strong>invoices in ₹</strong>, notes, and a client portal that
-              only needs a <strong>UPI ID</strong>. Made for the people who work for themselves.
+              Client list in Notion. Numbers in a spreadsheet. Invoices from a PDF template you
+              edit by hand. Payment reminders on WhatsApp. Opsy&nbsp;OS puts all of it —{' '}
+              <strong>clients, projects, tasks, notes, invoices, and payments</strong> — in one
+              calm place.
             </motion.p>
 
             <motion.div variants={rise} className="btn-stack">
@@ -155,7 +151,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
               >
                 <GoogleG />
-                Sign up with Google — it takes 2 minutes
+                Sign up with Google — free right now
               </motion.a>
               <motion.a
                 className="btn-secondary btn-lg"
@@ -179,7 +175,7 @@ export default function Hero() {
               </span>
               <span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-                Built in India
+                Your data exports any time
               </span>
             </motion.div>
           </motion.div>

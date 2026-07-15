@@ -3,7 +3,8 @@ import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import Chaos from './components/Chaos.jsx'
 import Features from './components/Features.jsx'
-import Countdown from './components/Countdown.jsx'
+import Pricing from './components/Pricing.jsx'
+import Faq from './components/Faq.jsx'
 import { NotList, CtaBand, Maker, Footer, MobileCta } from './components/Closing.jsx'
 
 export default function App() {
@@ -15,8 +16,9 @@ export default function App() {
         <Chaos />
         <Features />
         <NotList />
+        <Pricing />
+        <Faq />
         <CtaBand />
-        <Countdown />
         <Maker />
       </main>
       <Footer />
