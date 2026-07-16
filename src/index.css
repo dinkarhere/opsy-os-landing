@@ -1,3 +1,12 @@
+/* Content-visibility guarantee — see src/reveal-fallback.js. Framer Motion's
+   entrance animations start every element at opacity:0 and rely on rAF to
+   reveal it; if that loop never ticks (backgrounded tab, throttled mobile
+   browser), the page is stuck blank. This class is added as a fallback and
+   force-reveals everything regardless of what JS/inline styles are doing. */
+html.force-reveal [style*="opacity"] {
+  opacity: 1 !important;
+}
+
 /* ===================================================
    Design tokens — DESIGN.md (Cal.com-inspired)
    =================================================== */
