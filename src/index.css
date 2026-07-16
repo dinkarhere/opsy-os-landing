@@ -1233,7 +1233,7 @@ button { font-family: inherit; }
   color: var(--body-text);
 }
 .wl-sub strong { color: var(--ink); font-weight: 600; }
-.wl-form { width: 100%; max-width: 460px; }
+.wl-form { width: 100%; }
 .wl-row { display: flex; gap: 10px; }
 @media (max-width: 520px) { .wl-row { flex-direction: column; } }
 .wl-input {
