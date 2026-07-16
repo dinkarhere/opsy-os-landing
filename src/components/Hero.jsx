@@ -16,7 +16,7 @@ export function GoogleG({ size = 16 }) {
 const AMOUNTS = [15000, 30000, 45000]
 const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN')
 
-function InvoicePanel() {
+export function InvoicePanel() {
   const [idx, setIdx] = useState(1)
   const value = useMotionValue(AMOUNTS[1])
   const display = useTransform(value, (v) => inr(v))
@@ -73,7 +73,7 @@ function InvoicePanel() {
   )
 }
 
-function CalendarPanel() {
+export function CalendarPanel() {
   const cells = []
   cells.push({ t: '', cls: 'blank' })
   for (let d = 1; d <= 30; d++) {
