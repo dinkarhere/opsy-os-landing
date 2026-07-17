@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { MotionConfig, motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { MotionConfig, motion, useScroll, useTransform } from 'framer-motion'
 import {
   Receipt,
   CalendarBlank,
@@ -115,6 +115,11 @@ function FloatingIcons() {
 
 export default function Waitlist() {
   const [count, setCount] = useState(null)
+  const shotRef = useRef(null)
+  // Scroll-linked: grows from 0.7x as the screenshot enters until it reaches
+  // the middle of the viewport at full size.
+  const { scrollYProgress } = useScroll({ target: shotRef, offset: ['start end', 'center center'] })
+  const shotScale = useTransform(scrollYProgress, [0, 1], [0.7, 1])
 
   useEffect(() => {
     fetch(WAITLIST_API)
@@ -164,14 +169,8 @@ export default function Waitlist() {
             )}
           </motion.p>
 
-          <motion.div
-            className="wl-visual"
-            initial={{ opacity: 0, y: 48, scale: 0.97 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          >
-            <img className="wl-shot" src="/Screenshots/Opsy Dark Dashboard View.png" alt="Opsy OS dashboard" loading="lazy" />
+          <motion.div ref={shotRef} className="wl-visual" style={{ scale: shotScale }}>
+            <img className="wl-shot" src="/Screenshots/Updated.png" alt="Opsy OS dashboard" loading="lazy" />
           </motion.div>
         </motion.div>
 
