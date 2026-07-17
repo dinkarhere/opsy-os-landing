@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { MotionConfig, motion } from 'framer-motion'
 import { CONTACT_EMAIL, stagger, rise } from './anim.js'
-import { InvoicePanel, CalendarPanel } from './components/Hero.jsx'
 
 const WAITLIST_API = 'https://app.opsyos.com/api/waitlist'
 const LAUNCH_LABEL = 'Monday, 20 July'
@@ -95,13 +94,14 @@ export default function Waitlist() {
           </motion.span>
 
           <motion.h1 variants={rise} className="display-xl wl-title">
-            The whole freelance business, in one calm place.
+            Own your
+            <br />
+            freelance business.
           </motion.h1>
 
           <motion.p variants={rise} className="wl-sub">
-            Clients, projects, tasks, notes, <strong>invoices in ₹</strong>, and a client portal
-            your clients pay through — one keyboard-fast app instead of five browser tabs. Doors
-            open {LAUNCH_LABEL}. Leave your email and be first in.
+            Clients, projects, <strong>invoices in ₹</strong>, and a client portal your clients
+            pay through — one keyboard-fast app. Doors open {LAUNCH_LABEL}.
           </motion.p>
 
           <motion.div variants={rise} className="wl-form-wrap">
@@ -113,27 +113,8 @@ export default function Waitlist() {
             <a href="/lander">Preview the full site →</a>
           </motion.p>
 
-          <motion.div
-            className="hero-visual wl-visual"
-            initial={{ opacity: 0, y: 32, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.45, ease: [0.21, 0.47, 0.32, 0.98] }}
-          >
-            <div className="hero-mockup">
-              <motion.div
-                className="paid-toast"
-                initial={{ opacity: 0, y: 12, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 320, damping: 22, delay: 1.6 }}
-              >
-                <span className="tick">
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-                </span>
-                Payment received — ₹15,000
-              </motion.div>
-              <InvoicePanel />
-              <CalendarPanel />
-            </div>
+          <motion.div variants={rise} className="wl-visual">
+            <img className="wl-shot" src="/Screenshots/Opsy Dark Dashboard View.png" alt="Opsy OS dashboard" loading="lazy" />
           </motion.div>
         </motion.div>
 

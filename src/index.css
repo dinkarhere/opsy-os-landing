@@ -1301,7 +1301,14 @@ button { font-family: inherit; }
   transition: border-color 140ms ease;
 }
 .wl-fineprint a:hover { border-bottom-color: var(--ink); }
-.wl-visual { margin-top: clamp(40px, 7vh, 64px); width: 100%; max-width: 620px; }
+.wl-visual { margin-top: clamp(40px, 7vh, 64px); width: 100%; max-width: 960px; }
+.wl-shot {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 60px rgba(17, 17, 17, 0.12);
+}
 .wl-footer {
   width: 100%;
   max-width: 1200px;
