@@ -104,7 +104,7 @@ export default function Waitlist() {
             open {LAUNCH_LABEL}. Leave your email and be first in.
           </motion.p>
 
-          <motion.div variants={rise}>
+          <motion.div variants={rise} className="wl-form-wrap">
             <WaitlistForm />
           </motion.div>
 
