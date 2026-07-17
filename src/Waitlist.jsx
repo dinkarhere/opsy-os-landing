@@ -109,11 +109,16 @@ export default function Waitlist() {
           </motion.div>
 
           <motion.p variants={rise} className="wl-fineprint">
-            One email when we open. No spam, ever. Curious?{' '}
-            <a href="/lander">Preview the full site →</a>
+            One email when we open. No spam, ever. <strong>8 people</strong> already joined.
           </motion.p>
 
-          <motion.div variants={rise} className="wl-visual">
+          <motion.div
+            className="wl-visual"
+            initial={{ opacity: 0, y: 48, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          >
             <img className="wl-shot" src="/Screenshots/Opsy Dark Dashboard View.png" alt="Opsy OS dashboard" loading="lazy" />
           </motion.div>
         </motion.div>

@@ -1301,7 +1301,10 @@ button { font-family: inherit; }
   transition: border-color 140ms ease;
 }
 .wl-fineprint a:hover { border-bottom-color: var(--ink); }
-.wl-visual { margin-top: clamp(40px, 7vh, 64px); width: 100%; max-width: 960px; }
+.wl-visual { margin-top: clamp(40px, 7vh, 64px); width: 75%; max-width: 960px; }
+@media (max-width: 640px) {
+  .wl-visual { width: 100%; }
+}
 .wl-shot {
   display: block;
   width: 100%;
