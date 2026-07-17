@@ -1,5 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MotionConfig, motion } from 'framer-motion'
+import {
+  Receipt,
+  CalendarBlank,
+  CheckSquare,
+  Users,
+  Note,
+  CurrencyInr,
+  FolderSimple,
+  Bell,
+} from '@phosphor-icons/react'
 import { CONTACT_EMAIL, stagger, rise } from './anim.js'
 
 const WAITLIST_API = 'https://app.opsyos.com/api/waitlist'
@@ -79,10 +89,46 @@ function WaitlistForm() {
   )
 }
 
+// Decorative icons drifting in the whitespace beside the hero copy.
+const FLOATING_ICONS = [
+  [Receipt, { top: '14%', left: '9%' }, 28, 0],
+  [CalendarBlank, { top: '34%', left: '5%' }, 22, 1.2],
+  [CheckSquare, { top: '52%', left: '12%' }, 24, 2.4],
+  [CurrencyInr, { top: '22%', left: '18%' }, 18, 3.1],
+  [Note, { top: '13%', right: '10%' }, 24, 0.8],
+  [Users, { top: '33%', right: '5%' }, 26, 1.9],
+  [FolderSimple, { top: '52%', right: '13%' }, 22, 2.8],
+  [Bell, { top: '24%', right: '18%' }, 18, 3.6],
+]
+
+function FloatingIcons() {
+  return (
+    <div className="wl-icons" aria-hidden="true">
+      {FLOATING_ICONS.map(([Icon, pos, size, delay], i) => (
+        <span key={i} className="wl-float" style={{ ...pos, animationDelay: `${delay}s` }}>
+          <Icon size={size} weight="duotone" />
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export default function Waitlist() {
+  const [count, setCount] = useState(null)
+
+  useEffect(() => {
+    fetch(WAITLIST_API)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.ok && d.count > 0) setCount(d.count)
+      })
+      .catch(() => {})
+  }, [])
+
   return (
     <MotionConfig reducedMotion="user">
       <main className="wl-page">
+        <FloatingIcons />
         <motion.div className="wl-inner" variants={stagger} initial="hidden" animate="show">
           <motion.a variants={rise} className="wl-logo" href="/" aria-label="Opsy OS">
             <img src="/Icons/logo-black.svg" alt="Opsy OS" />
@@ -109,7 +155,13 @@ export default function Waitlist() {
           </motion.div>
 
           <motion.p variants={rise} className="wl-fineprint">
-            One email when we open. No spam, ever. <strong>8 people</strong> already joined.
+            One email when we open. No spam, ever.
+            {count != null && (
+              <>
+                {' '}
+                <strong>{count === 1 ? '1 person' : `${count} people`}</strong> already joined.
+              </>
+            )}
           </motion.p>
 
           <motion.div

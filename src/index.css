@@ -1207,11 +1207,13 @@ button { font-family: inherit; }
 
 /* ============ Waitlist (pre-launch root) ============ */
 .wl-page {
+  position: relative;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: clamp(32px, 6vh, 72px) 24px 0;
+  overflow-x: clip;
 }
 .wl-inner {
   width: 100%;
@@ -1301,9 +1303,28 @@ button { font-family: inherit; }
   transition: border-color 140ms ease;
 }
 .wl-fineprint a:hover { border-bottom-color: var(--ink); }
-.wl-visual { margin-top: clamp(40px, 7vh, 64px); width: 75%; max-width: 960px; }
+.wl-visual { margin-top: clamp(40px, 7vh, 64px); width: 75vw; }
 @media (max-width: 640px) {
   .wl-visual { width: 100%; }
+}
+
+/* Decorative phosphor icons drifting in the hero's side whitespace. */
+.wl-icons { position: absolute; inset: 0; pointer-events: none; }
+.wl-float {
+  position: absolute;
+  color: var(--muted-soft);
+  opacity: 0.45;
+  animation: wl-drift 7s ease-in-out infinite;
+}
+@keyframes wl-drift {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+@media (max-width: 900px) {
+  .wl-icons { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wl-float { animation: none; }
 }
 .wl-shot {
   display: block;
